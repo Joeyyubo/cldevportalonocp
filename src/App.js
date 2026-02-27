@@ -234,13 +234,6 @@ const App = () => {
             >
               Topology
             </NavItem>
-            <NavItem 
-              itemId="connectivity-observability" 
-              isActive={activeItem === 'connectivity-observability'}
-              onClick={() => setActiveItem('connectivity-observability')}
-            >
-              Observability
-            </NavItem>
             <NavItem
               itemId="api-products"
               isActive={activeItem === 'api-products'}
@@ -254,6 +247,13 @@ const App = () => {
               onClick={() => setActiveItem('api-key-approvals')}
             >
               API key approvals
+            </NavItem>
+            <NavItem 
+              itemId="connectivity-observability" 
+              isActive={activeItem === 'connectivity-observability'}
+              onClick={() => setActiveItem('connectivity-observability')}
+            >
+              Observability
             </NavItem>
           </NavExpandable>
           <NavExpandable
