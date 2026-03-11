@@ -85,7 +85,7 @@ const APIKeyApprovalsPage = () => {
   return (
     <>
       <PageSection variant="light">
-        <Title headingLevel="h1" size="2xl">API key approvals</Title>
+        <Title headingLevel="h1" size="2xl">API key approval</Title>
         <p style={{ marginTop: '8px', color: 'var(--pf-v5-global--Color--200)' }}>
           Manage keys issued to clients for accessing APIs.
         </p>

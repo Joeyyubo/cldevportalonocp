@@ -38,8 +38,6 @@ import MCPServerConfigPage from './components/MCPServerConfigPage';
 import MCPServerDiscoveryPage from './components/MCPServerDiscoveryPage';
 import MCPServerTestConnectionPage from './components/MCPServerTestConnectionPage';
 import MCPServerLogsPage from './components/MCPServerLogsPage';
-import ObservabilityPage from './components/ObservabilityPage';
-import ConnectivityObservabilityPage from './components/ConnectivityObservabilityPage';
 import APIKeyApprovalsPage from './components/APIKeyApprovalsPage';
 import PortalPage from './components/PortalPage';
 import PortalsManagementPage from './components/PortalsManagementPage';
@@ -80,14 +78,14 @@ const App = () => {
 
   // Auto-expand Connectivity Link when any of its child items are active
   useEffect(() => {
-    if (['overview', 'policies', 'topology', 'connectivity-observability', 'api-products', 'api-key-approvals'].includes(activeItem)) {
+    if (['overview', 'policies', 'topology', 'api-products'].includes(activeItem)) {
       setIsKuadrantExpanded(true);
     }
   }, [activeItem]);
 
   // Auto-expand Dev portal when any of its child items are active
   useEffect(() => {
-    if (['internal-portals', 'api-access', 'observability'].includes(activeItem)) {
+    if (['internal-portals', 'api-access', 'api-key-approvals'].includes(activeItem)) {
       setIsInternalPortalExpanded(true);
     }
   }, [activeItem]);
@@ -211,7 +209,7 @@ const App = () => {
           title="Connectivity Link"
             isExpanded={isKuadrantExpanded}
             onExpand={() => setIsKuadrantExpanded(!isKuadrantExpanded)}
-            isActive={['overview', 'policies', 'topology', 'connectivity-observability', 'api-products', 'api-key-approvals'].includes(activeItem)}
+            isActive={['overview', 'policies', 'topology', 'api-products'].includes(activeItem)}
           >
             <NavItem 
               itemId="overview" 
@@ -241,26 +239,12 @@ const App = () => {
             >
               API products
             </NavItem>
-            <NavItem
-              itemId="api-key-approvals"
-              isActive={activeItem === 'api-key-approvals'}
-              onClick={() => setActiveItem('api-key-approvals')}
-            >
-              API key approvals
-            </NavItem>
-            <NavItem 
-              itemId="connectivity-observability" 
-              isActive={activeItem === 'connectivity-observability'}
-              onClick={() => setActiveItem('connectivity-observability')}
-            >
-              Observability
-            </NavItem>
           </NavExpandable>
           <NavExpandable
             title="Dev portal"
             isExpanded={isInternalPortalExpanded}
             onExpand={() => setIsInternalPortalExpanded(!isInternalPortalExpanded)}
-            isActive={['internal-portals', 'api-access', 'observability'].includes(activeItem)}
+            isActive={['internal-portals', 'api-access', 'api-key-approvals'].includes(activeItem)}
           >
             <NavItem
               itemId="internal-portals"
@@ -281,11 +265,11 @@ const App = () => {
               My API keys
             </NavItem>
             <NavItem
-              itemId="observability"
-              isActive={activeItem === 'observability'}
-              onClick={() => setActiveItem('observability')}
+              itemId="api-key-approvals"
+              isActive={activeItem === 'api-key-approvals'}
+              onClick={() => setActiveItem('api-key-approvals')}
             >
-              Observability
+              API key approval
             </NavItem>
           </NavExpandable>
       </NavList>
@@ -355,8 +339,6 @@ const App = () => {
         return <PoliciesPage />;
       case 'topology':
         return <TopologyPage />;
-      case 'connectivity-observability':
-        return <ConnectivityObservabilityPage />;
       case 'internal-portals':
         if (selectedApiDetails) {
           return (
@@ -378,8 +360,6 @@ const App = () => {
         return <APIProductsPage />;
       case 'api-access':
         return <APICredentialsPage />;
-      case 'observability':
-        return <ObservabilityPage />;
       case 'api-key-approvals':
         return <APIKeyApprovalsPage />;
       case 'overview':
